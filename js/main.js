@@ -77,6 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = 1;
                 entry.target.style.transform = 'translateY(0)';
+                // Revert to CSS transitions after fade-in
+                setTimeout(() => {
+                    entry.target.style.transition = '';
+                }, 1000);
                 observer.unobserve(entry.target);
             }
         });
@@ -88,5 +92,94 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = 'translateY(30px)';
         card.style.transition = `all 0.5s ease ${index * 0.1}s`;
         observer.observe(card);
+    });
+
+    // --- Dynamic Torn Edge Generator ---
+    function generateTornPolygon(nx, ny, varX, varY) {
+        const p = [];
+        // Top
+        for (let x = 0; x < nx; x++) p.push(`${(x / nx * 100).toFixed(1)}% ${(Math.random() * varY).toFixed(1)}%`);
+        // Right
+        for (let y = 0; y < ny; y++) p.push(`${(100 - Math.random() * varX).toFixed(1)}% ${(y / ny * 100).toFixed(1)}%`);
+        // Bottom
+        for (let x = 0; x < nx; x++) p.push(`${(100 - x / nx * 100).toFixed(1)}% ${(100 - Math.random() * varY).toFixed(1)}%`);
+        // Left
+        for (let y = 0; y < ny; y++) p.push(`${(Math.random() * varX).toFixed(1)}% ${(100 - y / ny * 100).toFixed(1)}%`);
+
+        return `polygon(${p.join(', ')})`;
+    }
+
+    // Helper for game images torn edge
+    function generateImageBottomTorn() {
+        const points = ['0% 0%', '100% 0%', '100% 95%'];
+        const numPoints = 15;
+        for (let i = 0; i <= numPoints; i++) {
+            points.push(`${(100 - (i / numPoints) * 100).toFixed(1)}% ${(95 + Math.random() * 5).toFixed(1)}%`);
+        }
+        points.push('0% 95%');
+        return `polygon(${points.join(', ')})`;
+    }
+
+    // Apply initial edges and set up hover mutation
+    gameCards.forEach(card => {
+        card.style.clipPath = generateTornPolygon(20, 25, 4, 3);
+
+        card.addEventListener('mouseenter', () => {
+            card.style.clipPath = generateTornPolygon(20, 25, 4, 3);
+            card.hoverInterval = setInterval(() => {
+                card.style.clipPath = generateTornPolygon(20, 25, 4, 3);
+            }, 2000);
+        });
+        card.addEventListener('mouseleave', () => {
+            clearInterval(card.hoverInterval);
+        });
+    });
+
+    const carouselContainer = document.querySelector('.carousel-container');
+    if (carouselContainer) {
+        carouselContainer.style.clipPath = generateTornPolygon(50, 20, 1.5, 3);
+
+        carouselContainer.addEventListener('mouseenter', () => {
+            carouselContainer.style.clipPath = generateTornPolygon(50, 20, 1.5, 3);
+            carouselContainer.hoverInterval = setInterval(() => {
+                carouselContainer.style.clipPath = generateTornPolygon(50, 20, 1.5, 3);
+            }, 2000);
+        });
+        carouselContainer.addEventListener('mouseleave', () => {
+            clearInterval(carouselContainer.hoverInterval);
+        });
+    }
+
+    const gameImages = document.querySelectorAll('.game-image');
+    gameImages.forEach(img => {
+        img.style.clipPath = generateImageBottomTorn();
+
+        const parentCard = img.closest('.game-card');
+        if (parentCard) {
+            parentCard.addEventListener('mouseenter', () => {
+                img.style.clipPath = generateImageBottomTorn();
+                img.hoverInterval = setInterval(() => {
+                    img.style.clipPath = generateImageBottomTorn();
+                }, 600);
+            });
+            parentCard.addEventListener('mouseleave', () => {
+                clearInterval(img.hoverInterval);
+            });
+        }
+    });
+
+    const labelsAndBtns = document.querySelectorAll('.game-tag, .btn');
+    labelsAndBtns.forEach(el => {
+        el.style.clipPath = generateTornPolygon(10, 5, 5, 8);
+        
+        el.addEventListener('mouseenter', () => {
+            el.style.clipPath = generateTornPolygon(10, 5, 5, 8);
+            el.hoverInterval = setInterval(() => {
+                el.style.clipPath = generateTornPolygon(10, 5, 5, 8);
+            }, 2000);
+        });
+        el.addEventListener('mouseleave', () => {
+            clearInterval(el.hoverInterval);
+        });
     });
 });
