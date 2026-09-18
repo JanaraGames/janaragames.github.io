@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap');
 
 :root {
-    --bg-main: #141612; /* Very dark olive/gray */
-    --bg-surface: #1a1c18;
-    --bg-surface-hover: #21241f;
-    --accent-color: #8c9970; /* Desaturated moss green from Monrau */
-    --accent-dark: #2d3024;
+    --bg-main: #060404; /* Pitch black with a hint of dried blood */
+    --bg-surface: #120c0c;
+    --bg-surface-hover: #1c1313;
+    --accent-color: #8a1c1c; /* Deep blood red */
+    --accent-dark: #4a0e0e;
     --text-primary: #d6cbbd; /* Bone / Old parchment */
-    --text-secondary: #8c897c; /* Weathered bone */
+    --text-secondary: #8c7e70; /* Weathered bone */
     --font-heading: 'Crimson Text', serif;
     --font-body: 'Cormorant Garamond', serif;
     --transition-speed: 0.4s;
@@ -338,34 +338,72 @@ a:hover {
 }
 
 /* The Label (Coming Soon or Tags) */
+.game-tag, .coming-soon-label {
+    position: relative;
+    background: #000;
+    color: var(--accent-color);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid var(--accent-dark);
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    z-index: 1;
+    cursor: crosshair;
+}
+
 .game-tag {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: #000;
-    color: var(--accent-color);
     padding: 4px 12px;
-    font-family: var(--font-heading);
     font-size: 0.85rem;
-    font-weight: 700;
     letter-spacing: 1px;
-    text-transform: uppercase;
-    border: 1px solid var(--accent-color);
-    box-shadow: inset 0 0 5px rgba(138, 28, 28, 0.5);
 }
 
 .coming-soon-label {
     display: inline-block;
-    background: #000;
-    color: var(--accent-color);
     padding: 6px 16px;
-    font-family: var(--font-heading);
     font-size: 1rem;
-    font-weight: 700;
     letter-spacing: 2px;
-    text-transform: uppercase;
-    border: 1px solid var(--accent-color);
     margin-bottom: 1.5rem;
+}
+
+/* The dark ink/blood stain that spreads behind the text on hover */
+.game-tag::after, .coming-soon-label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: var(--text-primary);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1), height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: -1;
+}
+
+.game-tag:hover::after, .coming-soon-label:hover::after {
+    width: 300%;
+    height: 300%;
+}
+
+.game-tag:hover, .coming-soon-label:hover {
+    color: var(--bg-main);
+    border-color: var(--text-primary);
+    letter-spacing: 3px;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 0 15px rgba(214, 203, 189, 0.1);
+    animation: eldritch-tremor 0.15s infinite alternate;
+}
+
+@keyframes eldritch-tremor {
+    0% { transform: translate(0px, 0px) skewX(0deg); }
+    25% { transform: translate(-1px, 1px) skewX(1deg); }
+    50% { transform: translate(1px, -1px) skewX(-1deg); }
+    75% { transform: translate(1px, 1px) skewX(0deg); }
+    100% { transform: translate(-1px, -1px) skewX(1deg); }
 }
 
 .game-content {
