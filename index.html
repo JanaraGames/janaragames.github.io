@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Videogiochi</title>
+    <title>JanaraGames | Interactive Experiences & Cosmic Horror</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;500&display=swap');
+
         :root {
-            --primary-color: #fa5c5c; 
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --card-bg: #1e1e1e;
+            --bg-color: #070707;
+            --text-color: #e0e0e0;
+            --accent-color: #8a0303; /* Deep crimson/blood red */
+            --card-bg: #121212;
+            --border-color: #2a2a2a;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
@@ -21,184 +24,259 @@
             line-height: 1.6;
         }
 
-        header {
-            text-align: center;
-            padding: 3rem 1rem;
-            background-color: var(--card-bg);
-            border-bottom: 3px solid var(--primary-color);
+        h1, h2, h3 {
+            font-family: 'Space Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        h1 { margin: 0; font-size: 2.5rem; }
-        p.subtitle { color: #aaaaaa; font-size: 1.2rem; }
+        header {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: radial-gradient(circle at center, #1a0505 0%, #070707 100%);
+            border-bottom: 1px solid var(--accent-color);
+        }
 
-        /* Stili Slideshow */
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 10px rgba(138, 3, 3, 0.5);
+        }
+
+        header p {
+            color: #aaaaaa;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 1rem auto;
+        }
+
+        /* --- SLIDESHOW STYLES --- */
         .slideshow-container {
-            max-width: 1000px;
+            max-width: 900px;
             position: relative;
-            margin: 3rem auto;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin: 4rem auto;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
 
         .slide {
             display: none;
-            text-align: center;
+        }
+
+        /* Fade animation */
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
         }
 
         .slide img {
             width: 100%;
             height: 500px;
             object-fit: cover;
+            display: block;
         }
 
         .caption {
             position: absolute;
             bottom: 0;
             width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: #f2f2f2;
-            padding: 15px 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: #ffffff;
+            padding: 30px 20px 15px;
+            font-family: 'Space Mono', monospace;
             font-size: 1.2rem;
-            font-weight: bold;
+            box-sizing: border-box;
         }
 
         .prev, .next {
             cursor: pointer;
             position: absolute;
             top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
+            transform: translateY(-50%);
+            padding: 15px;
             color: white;
             font-weight: bold;
             font-size: 24px;
             transition: 0.3s;
-            border-radius: 0 3px 3px 0;
             user-select: none;
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgba(0,0,0,0.5);
+            text-decoration: none;
         }
 
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
+        .next { right: 0; }
+        .prev:hover, .next:hover { background-color: var(--accent-color); }
 
-        .prev:hover, .next:hover { background-color: var(--primary-color); }
-
-        .games-section {
-            max-width: 1200px;
+        /* --- GAMES GRID --- */
+        .portfolio-section {
+            max-width: 1100px;
             margin: 0 auto 5rem auto;
-            padding: 0 1rem;
+            padding: 0 2rem;
         }
 
-        .games-section h2 {
+        .portfolio-section h2 {
             text-align: center;
-            font-size: 2rem;
-            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
-            justify-items: center;
         }
 
         .game-card {
             background-color: var(--card-bg);
-            padding: 1rem;
-            border-radius: 8px;
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-            transition: transform 0.2s;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .game-card:hover { transform: translateY(-5px); }
-        
+        .game-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(138, 3, 3, 0.2);
+        }
+
+        .game-card h3 {
+            margin-top: 0;
+            color: #ffffff;
+        }
+
+        .game-card p {
+            color: #b0b0b0;
+            flex-grow: 1;
+        }
+
+        .play-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 10px 20px;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            text-decoration: none;
+            text-align: center;
+            font-family: 'Space Mono', monospace;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .play-btn:hover {
+            background-color: var(--accent-color);
+            color: #ffffff;
+        }
+
         footer {
             text-align: center;
-            padding: 2rem;
-            background-color: var(--card-bg);
-            margin-top: auto;
+            padding: 3rem;
+            border-top: 1px solid var(--border-color);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Il Mio Portfolio</h1>
-        <p class="subtitle">Game Developer & Designer</p>
+        <h1>JANARAGAMES</h1>
+        <p>Narrative, introspective experiences and cosmic horror delving into memories, loneliness, and ancient voices.</p>
     </header>
 
+    <!-- HIGHLIGHT SLIDESHOW -->
     <div class="slideshow-container">
-        <div class="slide">
-            <img src="" alt="Progetto 1">
-            <div class="caption">Titolo del Gioco Principale</div>
+        
+        <div class="slide fade">
+            <!-- 1. RIGHT CLICK ON THE BLOOD AND ROOTS COVER ON ITCH.IO, COPY IMAGE ADDRESS, AND PASTE IT BELOW -->
+            <img src="INCOLLA_QUI_IL_LINK_DELL_IMMAGINE_BLOOD_AND_ROOTS" alt="Blood and Roots">
+            <div class="caption">BLOOD AND ROOTS | 1-bit Horror Point & Click</div>
         </div>
 
-        <div class="slide">
-            <img src="https://via.placeholder.com/1000x500/222222/fa5c5c?text=Screenshot+Progetto+2" alt="Progetto 2">
-            <div class="caption">Concept Art o Gameplay</div>
+        <div class="slide fade">
+            <!-- 2. RIGHT CLICK ON THE OCEAN'S CALLING COVER ON ITCH.IO, COPY IMAGE ADDRESS, AND PASTE IT BELOW -->
+            <img src="INCOLLA_QUI_IL_LINK_DELL_IMMAGINE_OCEANS_CALLING" alt="Ocean's Calling">
+            <div class="caption">OCEAN'S CALLING | A Narrative & Introspective Experience</div>
         </div>
 
-        <div class="slide">
-            <img src="https://via.placeholder.com/1000x500/222222/fa5c5c?text=Screenshot+Progetto+3" alt="Progetto 3">
-            <div class="caption">Un altro grande progetto</div>
+        <div class="slide fade">
+            <!-- 3. RIGHT CLICK ON THE VERLETZUNG COVER ON ITCH.IO, COPY IMAGE ADDRESS, AND PASTE IT BELOW -->
+            <img src="INCOLLA_QUI_IL_LINK_DELL_IMMAGINE_VERLETZUNG" alt="VERLETZUNG">
+            <div class="caption">VERLETZUNG | Cosmic Horror Visual Novel</div>
         </div>
 
-        <a class="prev" onclick="cambiaSlide(-1)">&#10094;</a>
-        <a class="next" onclick="cambiaSlide(1)">&#10095;</a>
+        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="next" onclick="changeSlide(1)">&#10095;</a>
     </div>
 
-    <!-- SEZIONE GIOCHI ITCH.IO -->
-    <section class="games-section">
-        <h2>Gioca ai miei titoli</h2>
+    <!-- GAMES PORTFOLIO -->
+    <section class="portfolio-section">
+        <h2>Our Catalog</h2>
         <div class="games-grid">
             
             <div class="game-card">
-
-                <iframe frameborder="0" src="https://itch.io/embed/123456?dark=true" width="314" height="167"><a href="https://tuonome.itch.io/gioco1">Gioco 1 su itch.io</a></iframe>
-                <p>Descrizione breve del primo gioco, i controlli e il motore utilizzato.</p>
+                <h3>Blood and Roots</h3>
+                <p>He walks along a dark path, gathering what must be bonded to root and soil. A creature awaits in silence, suspended between dream and dread. A 1-bit point & click horror experience.</p>
+                <a href="https://janaragames.itch.io/blood-and-roots" target="_blank" class="play-btn">Play on itch.io</a>
             </div>
 
             <div class="game-card">
+                <h3>Ocean's Calling</h3>
+                <p>A narrative and introspective experience that delves into memories, loneliness, and ancient voices from the ocean. Sometimes, the water holds more than just reflections.</p>
+                <a href="https://janaragames.itch.io/oceans-calling" target="_blank" class="play-btn">Play on itch.io</a>
+            </div>
 
-                <iframe frameborder="0" src="https://itch.io/embed/654321?dark=true" width="314" height="167"><a href="https://tuonome.itch.io/gioco2">Gioco 2 su itch.io</a></iframe>
-                <p>Descrizione breve del secondo gioco, nato durante una game jam.</p>
+            <div class="game-card">
+                <h3>VERLETZUNG</h3>
+                <p>A monotonous life with a job in the lonely Arkheion Museum and strong feelings of alienation after a life-disrupting event. A cosmic horror visual novel.</p>
+                <a href="https://janaragames.itch.io/verletzung" target="_blank" class="play-btn">Play on itch.io</a>
+            </div>
+
+            <div class="game-card">
+                <h3>Syntony</h3>
+                <p>An interactive fiction entry exploring deep themes. What happens when frequencies align and reality shifts? Created for the GMTK Game Jam.</p>
+                <a href="https://janaragames.itch.io/syntony" target="_blank" class="play-btn">Play on itch.io</a>
             </div>
 
         </div>
     </section>
 
     <footer>
-        <p>Contattami all'evento live o scrivimi sui social!</p>
+        <p>&copy; 2026 JanaraGames. All rights reserved.</p>
     </footer>
 
-
+    <!-- SLIDESHOW JAVASCRIPT -->
     <script>
-        let indiceSlide = 1;
-        mostraSlide(indiceSlide);
+        let slideIndex = 1;
+        showSlides(slideIndex);
 
-        function cambiaSlide(n) {
-            mostraSlide(indiceSlide += n);
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
         }
 
-        function mostraSlide(n) {
+        function showSlides(n) {
             let i;
             let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) {indiceSlide = 1}
-            if (n < 1) {indiceSlide = slides.length}
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
-            slides[indiceSlide-1].style.display = "block";
+            slides[slideIndex-1].style.display = "block";
         }
-
+        
+        // Auto-advance every 6 seconds
         setInterval(function() {
-            cambiaSlide(1);
-        }, 5000);
+            changeSlide(1);
+        }, 6000);
     </script>
 
 </body>
