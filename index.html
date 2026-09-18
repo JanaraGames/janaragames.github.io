@@ -3,281 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JanaraGames | Interactive Experiences & Cosmic Horror</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;500&display=swap');
-
-        :root {
-            --bg-color: #070707;
-            --text-color: #e0e0e0;
-            --accent-color: #8a0303; /* Deep crimson/blood red */
-            --card-bg: #121212;
-            --border-color: #2a2a2a;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Space Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        header {
-            text-align: center;
-            padding: 4rem 1rem;
-            background: radial-gradient(circle at center, #1a0505 0%, #070707 100%);
-            border-bottom: 1px solid var(--accent-color);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 3rem;
-            color: #ffffff;
-            text-shadow: 2px 2px 10px rgba(138, 3, 3, 0.5);
-        }
-
-        header p {
-            color: #aaaaaa;
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 1rem auto;
-        }
-
-        /* --- SLIDESHOW STYLES --- */
-        .slideshow-container {
-            max-width: 900px;
-            position: relative;
-            margin: 4rem auto;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-        }
-
-        .slide {
-            display: none;
-        }
-
-        /* Fade animation */
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-        @keyframes fade {
-            from {opacity: .4} 
-            to {opacity: 1}
-        }
-
-        .slide img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .caption {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            color: #ffffff;
-            padding: 30px 20px 15px;
-            font-family: 'Space Mono', monospace;
-            font-size: 1.2rem;
-            box-sizing: border-box;
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 15px;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-            transition: 0.3s;
-            user-select: none;
-            background-color: rgba(0,0,0,0.5);
-            text-decoration: none;
-        }
-
-        .next { right: 0; }
-        .prev:hover, .next:hover { background-color: var(--accent-color); }
-
-        /* --- GAMES GRID --- */
-        .portfolio-section {
-            max-width: 1100px;
-            margin: 0 auto 5rem auto;
-            padding: 0 2rem;
-        }
-
-        .portfolio-section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 3rem;
-            color: #ffffff;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .game-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .game-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 20px rgba(138, 3, 3, 0.2);
-        }
-
-        .game-card h3 {
-            margin-top: 0;
-            color: #ffffff;
-        }
-
-        .game-card p {
-            color: #b0b0b0;
-            flex-grow: 1;
-        }
-
-        .play-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 10px 20px;
-            background-color: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            text-decoration: none;
-            text-align: center;
-            font-family: 'Space Mono', monospace;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .play-btn:hover {
-            background-color: var(--accent-color);
-            color: #ffffff;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem;
-            border-top: 1px solid var(--border-color);
-            font-family: 'Space Mono', monospace;
-            font-size: 0.9rem;
-            color: #666;
-        }
-    </style>
+    <title>JanaraGames | Indie Game Studio</title>
+    <meta name="description" content="JanaraGames is an independent indie game studio creating narrative, introspective, and cosmic horror experiences.">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header>
+    <!-- Hero Section -->
+    <section class="hero">
         <h1>JANARAGAMES</h1>
         <p>Narrative, introspective experiences and cosmic horror delving into memories, loneliness, and ancient voices.</p>
-    </header>
-
-    <!-- HIGHLIGHT SLIDESHOW -->
-    <div class="slideshow-container">
-        
-        <div class="slide fade">
-            <!-- 1. RIGHT CLICK ON THE BLOOD AND ROOTS COVER ON ITCH.IO, COPY IMAGE ADDRESS, AND PASTE IT BELOW -->
-            <img src="INCOLLA_QUI_IL_LINK_DELL_IMMAGINE_BLOOD_AND_ROOTS" alt="Blood and Roots">
-            <div class="caption">BLOOD AND ROOTS | 1-bit Horror Point & Click</div>
+        <a href="#portfolio" class="btn btn-primary">Explore Our Worlds</a>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
         </div>
+    </section>
 
-        <div class="slide fade">
-            <!-- 2. RIGHT CLICK ON THE OCEAN'S CALLING COVER ON ITCH.IO, COPY IMAGE ADDRESS, AND PASTE IT BELOW -->
-            <img src="INCOLLA_QUI_IL_LINK_DELL_IMMAGINE_OCEANS_CALLING" alt="Ocean's Calling">
-            <div class="caption">OCEAN'S CALLING | A Narrative & Introspective Experience</div>
+    <!-- Highlight Slideshow -->
+    <section class="slideshow-section">
+        <h2 class="section-title">Featured Titles</h2>
+        <div class="carousel-container">
+            
+            <!-- Slide 1 -->
+            <div class="carousel-slide">
+                <img src="https://img.itch.zone/aW1nLzIyNzc4MzQ4LnBuZw==/original/cvDD2d.png" alt="Blood and Roots Cover">
+                <div class="carousel-caption">
+                    <h2>Blood and Roots</h2>
+                    <p>Retro fashioned adventure game, with guts and plants.</p>
+                    <a href="https://janaragames.itch.io/blood-and-roots" target="_blank" class="btn btn-primary">Play Now</a>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+                <img src="https://img.itch.zone/aW1nLzI3NjA5MTIwLnBuZw==/original/o9IAR6.png" alt="Ocean's Calling Cover">
+                <div class="carousel-caption">
+                    <h2>Ocean's Calling</h2>
+                    <p>A short narrative and introspective experience.</p>
+                    <a href="https://janaragames.itch.io/oceans-calling" target="_blank" class="btn btn-primary">Play Now</a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+                <img src="https://img.itch.zone/aW1nLzE4Mjg4ODQyLnBuZw==/original/AO3DcF.png" alt="VERLETZUNG Cover">
+                <div class="carousel-caption">
+                    <h2>VERLETZUNG</h2>
+                    <p>Journey into one's worst memory. A short cosmic horror experience.</p>
+                    <a href="https://janaragames.itch.io/verletzung" target="_blank" class="btn btn-primary">Play Now</a>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="carousel-control prev-btn"><i class="fas fa-chevron-left"></i></div>
+            <div class="carousel-control next-btn"><i class="fas fa-chevron-right"></i></div>
+            
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <div class="indicator active"></div>
+                <div class="indicator"></div>
+                <div class="indicator"></div>
+            </div>
         </div>
+    </section>
 
-        <div class="slide fade">
-            <!-- 3. RIGHT CLICK ON THE VERLETZUNG COVER ON ITCH.IO, COPY IMAGE ADDRESS, AND PASTE IT BELOW -->
-            <img src="https://img.itch.zone/aW1nLzE4Mjg4ODQyLnBuZw==/315x250%23c/AO3DcF.png" alt="VERLETZUNG">
-            <div class="caption">VERLETZUNG | Cosmic Horror Visual Novel</div>
-        </div>
-
-        <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-        <a class="next" onclick="changeSlide(1)">&#10095;</a>
-    </div>
-
-    <!-- GAMES PORTFOLIO -->
-    <section class="portfolio-section">
-        <h2>Our Catalog</h2>
+    <!-- Games Grid Portfolio -->
+    <section class="portfolio-section" id="portfolio">
+        <h2 class="section-title">All Games</h2>
         <div class="games-grid">
             
+            <!-- Card 1 -->
             <div class="game-card">
-                <h3>Blood and Roots</h3>
-                <p>He walks along a dark path, gathering what must be bonded to root and soil. A creature awaits in silence, suspended between dream and dread. A 1-bit point & click horror experience.</p>
-                <a href="https://janaragames.itch.io/blood-and-roots" target="_blank" class="play-btn">Play on itch.io</a>
+                <div class="game-image">
+                    <img src="https://img.itch.zone/aW1nLzI3NjA5MTIwLnBuZw==/315x250%23c/o9IAR6.png" alt="Ocean's Calling">
+                    <span class="game-tag">Visual Novel</span>
+                </div>
+                <div class="game-content">
+                    <h3>Ocean's Calling</h3>
+                    <p>Short narrative exploring memories and the deep ocean.</p>
+                    <a href="https://janaragames.itch.io/oceans-calling" target="_blank" class="game-link">View on itch.io <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
 
+            <!-- Card 2 -->
             <div class="game-card">
-                <h3>Ocean's Calling</h3>
-                <p>A narrative and introspective experience that delves into memories, loneliness, and ancient voices from the ocean. Sometimes, the water holds more than just reflections.</p>
-                <a href="https://janaragames.itch.io/oceans-calling" target="_blank" class="play-btn">Play on itch.io</a>
+                <div class="game-image">
+                    <img src="https://img.itch.zone/aW1nLzIyNzc4MzQ4LnBuZw==/315x250%23c/cvDD2d.png" alt="Blood and Roots">
+                    <span class="game-tag">Adventure</span>
+                </div>
+                <div class="game-content">
+                    <h3>Blood and Roots</h3>
+                    <p>Retro fashioned adventure game, with guts and plants. A 1-bit point & click experience.</p>
+                    <a href="https://janaragames.itch.io/blood-and-roots" target="_blank" class="game-link">View on itch.io <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
 
+            <!-- Card 3 -->
             <div class="game-card">
-                <h3>VERLETZUNG</h3>
-                <p>A monotonous life with a job in the lonely Arkheion Museum and strong feelings of alienation after a life-disrupting event. A cosmic horror visual novel.</p>
-                <a href="https://janaragames.itch.io/verletzung" target="_blank" class="play-btn">Play on itch.io</a>
+                <div class="game-image">
+                    <img src="https://img.itch.zone/aW1nLzE4Mjg4ODQyLnBuZw==/315x250%23c/AO3DcF.png" alt="VERLETZUNG">
+                    <span class="game-tag">Visual Novel</span>
+                </div>
+                <div class="game-content">
+                    <h3>VERLETZUNG</h3>
+                    <p>Journey into one's worst memory. A short cosmic horror experience in the Arkheion Museum.</p>
+                    <a href="https://janaragames.itch.io/verletzung" target="_blank" class="game-link">View on itch.io <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
 
+            <!-- Card 4 -->
             <div class="game-card">
-                <h3>Syntony</h3>
-                <p>An interactive fiction entry exploring deep themes. What happens when frequencies align and reality shifts? Created for the GMTK Game Jam.</p>
-                <a href="https://janaragames.itch.io/syntony" target="_blank" class="play-btn">Play on itch.io</a>
+                <div class="game-image">
+                    <img src="https://img.itch.zone/aW1nLzE3NDYyMzMxLnBuZw==/315x250%23c/JEs%2FvZ.png" alt="Syntony">
+                </div>
+                <div class="game-content">
+                    <h3>Syntony (Complete Version)</h3>
+                    <p>An interactive fiction entry exploring deep themes where frequencies align and reality shifts.</p>
+                    <a href="https://janaragames.itch.io/syntony-complete" target="_blank" class="game-link">View on itch.io <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="https://img.itch.zone/aW1nLzE2MzA3MDE0LnBuZw==/315x250%23c/gSkn0b.png" alt="Katabasis">
+                    <span class="game-tag">Puzzle</span>
+                </div>
+                <div class="game-content">
+                    <h3>Katabasis</h3>
+                    <p>This game is entirely hand drawn. Perform the ritual to talk to the deceased.</p>
+                    <a href="https://nokacu44.itch.io/katabasis" target="_blank" class="game-link">View on itch.io <i class="fas fa-arrow-right"></i></a>
+                </div>
             </div>
 
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 JanaraGames. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://janaragames.itch.io/" target="_blank" aria-label="itch.io"><i class="fab fa-itch-io"></i></a>
+            <!-- Added placeholders for other socials, easily customizable -->
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>Creators: @Nokacu44 & @SinnaArt</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; 2026 JanaraGames. All rights reserved.</p>
     </footer>
 
-    <!-- SLIDESHOW JAVASCRIPT -->
-    <script>
-        let slideIndex = 1;
-        showSlides(slideIndex);
-
-        function changeSlide(n) {
-            showSlides(slideIndex += n);
-        }
-
-        function showSlides(n) {
-            let i;
-            let slides = document.getElementsByClassName("slide");
-            if (n > slides.length) {slideIndex = 1}
-            if (n < 1) {slideIndex = slides.length}
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-            slides[slideIndex-1].style.display = "block";
-        }
-        
-        // Auto-advance every 6 seconds
-        setInterval(function() {
-            changeSlide(1);
-        }, 6000);
-    </script>
-
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
 </body>
 </html>
